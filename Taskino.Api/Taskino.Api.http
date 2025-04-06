@@ -1,0 +1,6 @@
+@Taskino.Api_HostAddress = http://localhost:5274
+
+GET {{Taskino.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
