@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Task\Delete\" />
+    <Folder Include="Commands\Task\Update\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Taskino.Domain\Taskino.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
