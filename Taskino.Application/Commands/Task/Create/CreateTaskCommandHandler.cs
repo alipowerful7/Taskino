@@ -23,6 +23,10 @@ namespace Taskino.Application.Commands.Task.Create
                 {
                     throw new UnauthorizedAccessException("User not found");
                 }
+                if (request.CreateTaskDto.DoneDate < DateTime.UtcNow)
+                {
+                    throw new Exception("Done date cannot be in the past");
+                }
                 var task = new Domain.Models.Entities.Task
                 {
                     Title = request.CreateTaskDto.Title,
