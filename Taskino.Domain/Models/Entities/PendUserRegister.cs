@@ -2,7 +2,7 @@
 
 namespace Taskino.Domain.Models.Entities
 {
-    public class PendUserRegister:BaseEntity.BaseEntity
+    public class PendUserRegister : BaseEntity.BaseEntity
     {
         [Required]
         [MaxLength(255)]
