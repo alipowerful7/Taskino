@@ -28,7 +28,7 @@ namespace Taskino.Application.Commands.User.ConfirmEmail
                 {
                     Email = pendUserRegister.Result?.Email,
                     CreateDate = DateTime.UtcNow,
-                    Name = pendUserRegister.Result?.Name,
+                    FirstName = pendUserRegister.Result?.Name,
                     LastName = pendUserRegister.Result?.LastName,
                     Password = pendUserRegister.Result?.Password,
                     UserName = pendUserRegister.Result?.UserName,

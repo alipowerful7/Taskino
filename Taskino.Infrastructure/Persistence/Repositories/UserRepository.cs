@@ -28,6 +28,16 @@ namespace Taskino.Infrastructure.Persistence.Repositories
             }
         }
 
+        public async Task<bool> CheckOldPassword(long userId, string oldPassword)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return BCrypt.Net.BCrypt.Verify(oldPassword, user.Password);
+        }
+
         public async Task<User?> GetByEmailAsync(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
@@ -55,9 +65,10 @@ namespace Taskino.Infrastructure.Persistence.Repositories
                 {
                     throw new Exception("User not found");
                 }
-                model.Name = user.Name;
+                model.FirstName = user.FirstName;
                 model.LastName = user.LastName;
                 model.Password = user.Password;
+                model.UserName = user.UserName;
                 await _context.SaveChangesAsync();
                 return true;
             }

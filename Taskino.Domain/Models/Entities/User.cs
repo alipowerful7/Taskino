@@ -7,7 +7,7 @@ namespace Taskino.Domain.Models.Entities
     {
         [Required]
         [MaxLength(255)]
-        public string? Name { get; set; }
+        public string? FirstName { get; set; }
         [Required]
         [MaxLength(300)]
         public string? LastName { get; set; }
