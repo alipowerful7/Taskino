@@ -2,7 +2,7 @@
 
 namespace Taskino.Domain.Interfaces
 {
-    public interface IPendUserRegister
+    public interface IPendUserRegisterRepository
     {
         Task<PendUserRegister?> GetByIdAsync(long id);
         Task<bool> AddAsync(PendUserRegister pendUserRegister);
