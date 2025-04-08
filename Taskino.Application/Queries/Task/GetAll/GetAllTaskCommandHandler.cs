@@ -15,7 +15,7 @@ namespace Taskino.Application.Queries.Task.GetAll
 
         public async Task<IEnumerable<ReadTaskDto>> Handle(GetAllTaskCommand request, CancellationToken cancellationToken)
         {
-            var tasks = await _taskRepository.GetAllAsync();
+            var tasks = await _taskRepository.GetAllAsync(request.ReadTaskDto.UserId);
             var result = new List<ReadTaskDto>();
             foreach (var task in tasks)
             {

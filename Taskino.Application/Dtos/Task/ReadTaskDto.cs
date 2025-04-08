@@ -11,5 +11,6 @@ namespace Taskino.Application.Dtos.Task
         public DateTime DoneDate { get; set; }
         public bool IsCompleted { get; set; }
         public TaskLevel TaskLevel { get; set; }
+        public long UserId { get; set; }
     }
 }
