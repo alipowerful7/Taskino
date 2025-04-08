@@ -36,7 +36,7 @@ namespace Taskino.Application.Commands.PendUserRegister.Create
                     Name = request.CreatePendUserRegisterDto.Name,
                     LastName = request.CreatePendUserRegisterDto.LastName,
                     UserName = request.CreatePendUserRegisterDto.UserName,
-                    Password = request.CreatePendUserRegisterDto.Password,
+                    Password = BCrypt.Net.BCrypt.HashPassword(request.CreatePendUserRegisterDto.Password),
                     Email = request.CreatePendUserRegisterDto.Email,
                     ConfirmationCode = confirmationCode,
                     CodeExpiresAt = expiration,
