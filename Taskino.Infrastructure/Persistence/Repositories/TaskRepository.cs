@@ -36,8 +36,7 @@ namespace Taskino.Infrastructure.Persistence.Repositories
                 {
                     throw new Exception("Task not found");
                 }
-                var result = await DeleteAsync(task);
-                return result;
+                return await DeleteAsync(task);
             }
             catch (Exception)
             {
