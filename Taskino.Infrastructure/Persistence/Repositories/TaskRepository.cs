@@ -71,6 +71,12 @@ namespace Taskino.Infrastructure.Persistence.Repositories
             return task;
         }
 
+        public async Task<IEnumerable<Domain.Models.Entities.Task>> GetTasksForReminder(DateTime reminderDate)
+        {
+            var tasks = await _context.Tasks.Include(t => t.User).Where(t => t.IsCompleted == false && t.DoneDate == reminderDate && t.IsReminderSent == false).ToListAsync();
+            return tasks;
+        }
+
         public async Task<bool> UpdateAsync(Domain.Models.Entities.Task task)
         {
             try
