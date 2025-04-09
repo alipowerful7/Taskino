@@ -8,12 +8,10 @@ namespace Taskino.Infrastructure.Services
     public class ReminderBackgroundService : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IEmailService _emailService;
 
-        public ReminderBackgroundService(IServiceProvider serviceProvider, IEmailService emailService)
+        public ReminderBackgroundService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _emailService = emailService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -23,11 +21,12 @@ namespace Taskino.Infrastructure.Services
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var taskRepository = scope.ServiceProvider.GetRequiredService<ITaskRepository>();
+                    var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
                     var tasks = await taskRepository.GetTasksForReminder(DateTime.UtcNow.AddDays(1));
 
                     foreach (var task in tasks)
                     {
-                        await _emailService.SendReminderEmailAsync(task.User?.Email!, task.Title!);
+                        await emailService.SendReminderEmailAsync(task.User?.Email!, task.Title!);
                         task.IsReminderSent = true;
                         await taskRepository.TrueReminderSent(task.Id);
                     }
