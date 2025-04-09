@@ -6,7 +6,8 @@ using Taskino.Application.Commands.User.Login;
 
 namespace Taskino.Api.Controllers.V1
 {
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
