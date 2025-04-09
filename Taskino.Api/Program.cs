@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Taskino.Application.Commands.PendUserRegister.Create;
 using Taskino.Application.Interfaces;
 using Taskino.Domain.Interfaces;
 using Taskino.Infrastructure.Persistence.Data;
@@ -37,7 +38,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePendUserRegisterCommand).Assembly));
 
 // Add Repositories
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();

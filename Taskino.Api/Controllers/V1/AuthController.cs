@@ -29,7 +29,7 @@ namespace Taskino.Api.Controllers.V1
             var result = await _mediator.Send(command);
             if (result)
             {
-                return Ok(result);
+                return Ok();
             }
             return BadRequest("Code id wrong");
         }
@@ -41,7 +41,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok(new { Token = user });
             }
-            return BadRequest("UserName or password is wrong");
+            return BadRequest("Username or password is wrong");
         }
     }
 }
