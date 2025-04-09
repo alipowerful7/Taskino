@@ -30,10 +30,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok(result);
             }
-            else
-            {
-                return BadRequest("Task could not be created");
-            }
+            return BadRequest("Task could not be created");
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(long id, UpdateTaskCommand command)
@@ -44,10 +41,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok();
             }
-            else
-            {
-                return BadRequest("Task could not be updated");
-            }
+            return BadRequest("Task could not be updated");
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
@@ -58,10 +52,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok();
             }
-            else
-            {
-                return BadRequest("Task could not be deleted");
-            }
+            return BadRequest("Task could not be deleted");
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -72,10 +63,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok(tasks);
             }
-            else
-            {
-                return NotFound("No tasks found");
-            }
+            return NotFound("No tasks found");
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
@@ -86,10 +74,7 @@ namespace Taskino.Api.Controllers.V1
             {
                 return Ok(task);
             }
-            else
-            {
-                return NotFound("Task not found");
-            }
+            return NotFound("Task not found");
         }
     }
 }

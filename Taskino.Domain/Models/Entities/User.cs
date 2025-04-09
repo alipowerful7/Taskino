@@ -3,7 +3,7 @@ using Taskino.Domain.Models.Enums;
 
 namespace Taskino.Domain.Models.Entities
 {
-    public class User:BaseEntity.BaseEntity
+    public class User : BaseEntity.BaseEntity
     {
         [Required]
         [MaxLength(255)]
