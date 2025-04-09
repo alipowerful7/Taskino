@@ -54,5 +54,39 @@ namespace Taskino.Infrastructure.Services
                 return false;
             }
         }
+
+        public async Task<bool> SendReminderEmailAsync(string email, string title)
+        {
+            var emailSettings = _configuration.GetSection("EmailSettings");
+            string smtpServer = emailSettings["SmtpServer"]!;
+            int port = int.Parse(emailSettings["Port"]!);
+            string senderEmail = emailSettings["SenderEmail"]!;
+            string senderPassword = emailSettings["SenderPassword"]!;
+            bool enableSSL = bool.Parse(emailSettings["EnableSSL"]!);
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Taskino", senderEmail));
+            string recipientEmail = email;
+            message.To.Add(new MailboxAddress("", recipientEmail));
+            message.Subject = "یادآوری تسک";
+            message.Body = new TextPart("html")
+            {
+                Text = $"<h1>تسک شما:</h1><h3>{title}</h3>"
+            };
+            try
+            {
+                using (var client = new SmtpClient())
+                {
+                    await client.ConnectAsync(smtpServer, port, SecureSocketOptions.StartTls);
+                    await client.AuthenticateAsync(senderEmail, senderPassword);
+                    await client.SendAsync(message);
+                    await client.DisconnectAsync(true);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

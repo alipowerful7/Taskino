@@ -76,6 +76,25 @@ namespace Taskino.Infrastructure.Persistence.Repositories
             return tasks;
         }
 
+        public async Task<bool> TrueReminderSent(long id)
+        {
+            try
+            {
+                var task = _context.Tasks.FirstOrDefaultAsync(t => t.Id == id);
+                if (task == null)
+                {
+                    throw new Exception("Task not found");
+                }
+                task.Result!.IsReminderSent = true;
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> UpdateAsync(Domain.Models.Entities.Task task)
         {
             try

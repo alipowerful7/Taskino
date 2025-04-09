@@ -9,5 +9,6 @@
         Task<bool> DeleteAsync(long id);
         Task<bool> DeleteAsync(Models.Entities.Task task);
         Task<IEnumerable<Models.Entities.Task>> GetTasksForReminder(DateTime reminderDate);
+        Task<bool> TrueReminderSent(long id);
     }
 }
