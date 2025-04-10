@@ -6,6 +6,7 @@ using Taskino.Application.Commands.Task.Delete;
 using Taskino.Application.Commands.Task.Update;
 using Taskino.Application.Dtos.Task;
 using Taskino.Application.Queries.Task.GetAll;
+using Taskino.Application.Queries.Task.GetById;
 
 namespace Taskino.Api.Controllers.V1
 {
@@ -70,7 +71,7 @@ namespace Taskino.Api.Controllers.V1
         public async Task<IActionResult> GetById(long id)
         {
             var userId = long.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
-            var task = await _mediator.Send(new GetAllTaskQuery(new ReadTaskDto { Id = id }));
+            var task = await _mediator.Send(new GetTaskByIdQuery(new ReadTaskDto { Id = id }));
             if (task != null)
             {
                 return Ok(task);

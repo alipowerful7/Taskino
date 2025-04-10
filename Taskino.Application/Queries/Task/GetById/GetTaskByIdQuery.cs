@@ -3,11 +3,11 @@ using Taskino.Application.Dtos.Task;
 
 namespace Taskino.Application.Queries.Task.GetById
 {
-    public class GetTaskByIdCommand : IRequest<ReadTaskDto>
+    public class GetTaskByIdQuery : IRequest<ReadTaskDto>
     {
         public ReadTaskDto ReadTaskDto { get; set; }
 
-        public GetTaskByIdCommand(ReadTaskDto readTaskDto)
+        public GetTaskByIdQuery(ReadTaskDto readTaskDto)
         {
             ReadTaskDto = readTaskDto;
         }

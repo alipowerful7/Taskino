@@ -27,7 +27,7 @@ namespace Taskino.Application.Queries.Task.GetAll
                     CreateDate = task.CreateDate,
                     DoneDate = task.DoneDate,
                     IsCompleted = task.IsCompleted,
-                    TaskLevel = task.TaskLevel
+                    TaskLevel = task.TaskLevel.ToString()
                 });
             }
             return result;

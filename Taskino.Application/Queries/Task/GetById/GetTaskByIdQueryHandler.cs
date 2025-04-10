@@ -4,16 +4,16 @@ using Taskino.Domain.Interfaces;
 
 namespace Taskino.Application.Queries.Task.GetById
 {
-    public class GetTaskByIdCommandHandler : IRequestHandler<GetTaskByIdCommand, ReadTaskDto>
+    public class GetTaskByIdQueryHandler : IRequestHandler<GetTaskByIdQuery, ReadTaskDto>
     {
         private readonly ITaskRepository _taskRepository;
 
-        public GetTaskByIdCommandHandler(ITaskRepository taskRepository)
+        public GetTaskByIdQueryHandler(ITaskRepository taskRepository)
         {
             _taskRepository = taskRepository;
         }
 
-        public async Task<ReadTaskDto> Handle(GetTaskByIdCommand request, CancellationToken cancellationToken)
+        public async Task<ReadTaskDto> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
         {
             var task = await _taskRepository.GetByIdAsync(request.ReadTaskDto.Id);
             if (task == null)
@@ -26,7 +26,7 @@ namespace Taskino.Application.Queries.Task.GetById
                 Title = task.Title,
                 Description = task.Description,
                 CreateDate = task.CreateDate,
-                TaskLevel = task.TaskLevel,
+                TaskLevel = task.TaskLevel.ToString(),
                 DoneDate = task.DoneDate,
                 IsCompleted = task.IsCompleted
             };
