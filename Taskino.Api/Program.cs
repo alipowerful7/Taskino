@@ -70,6 +70,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Creat
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPendUserRegisterRepository, PendUserRepository>();
+builder.Services.AddScoped<ITaskLevelRepository, TaskLevelRepository>();
 
 // Add Services
 builder.Services.AddScoped<IEmailService, EmailService>();

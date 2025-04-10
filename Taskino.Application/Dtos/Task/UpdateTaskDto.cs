@@ -1,6 +1,4 @@
-﻿using Taskino.Domain.Models.Enums;
-
-namespace Taskino.Application.Dtos.Task
+﻿namespace Taskino.Application.Dtos.Task
 {
     public class UpdateTaskDto
     {
@@ -9,6 +7,6 @@ namespace Taskino.Application.Dtos.Task
         public string? Description { get; set; }
         public DateTime DoneDate { get; set; }
         public bool IsCompleted { get; set; }
-        public TaskLevel TaskLevel { get; set; }
+        public Domain.Models.Enums.TaskLevel TaskLevel { get; set; }
     }
 }
